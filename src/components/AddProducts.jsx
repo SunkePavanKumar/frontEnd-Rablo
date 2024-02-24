@@ -16,11 +16,13 @@ function AddProducts() {
     const name = nameRef.current.value;
     const price = priceRef.current.value;
     const featured = featuredRef.current.checked;
-    const rating = ratingRef.current.value;
+    const rating = parseFloat(ratingRef.current.value);
     const company = companyRef.current.value;
-
-    // Validate inputs
+    if (rating < 1 || rating > 10) {
+      return toast.error("Rating Should in range of 1 to 10");
+    }
     if (!name || isNaN(price) || !company || !price || !rating) {
+      // Validate inputs
       setError(" Name, Price, Rating and Company are required.");
       return;
     }
