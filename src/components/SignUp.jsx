@@ -43,6 +43,9 @@ function SignUp() {
         email,
         password,
       });
+      if (response.data.message === "User Already Exists") {
+        return toast.error("User Already Exists");
+      }
       const token = response.data.token;
 
       // Store the token in local storage
